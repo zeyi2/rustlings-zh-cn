@@ -10,7 +10,7 @@ mod tests {
     //     1 | let foo = xxx;  
     //     2 | let bar = www;
     //           重新排列后:
-    //     1 | let baz = www;
+    //     1 | let bar = www;
     //     2 | let foo = xxx;
     #[test]
     fn move_semantics4() {
