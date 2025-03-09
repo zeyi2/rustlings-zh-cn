@@ -351,8 +351,11 @@ hint = """`current_favorite_color` 函数返回的是具有 `static`(静态)生�
 name = "strings2"
 dir = "09_strings"
 test = false
-hint = """此练习还暂无提示哦
-(需要点提示? 提出问题到 https://github.com/SandmeyerX/rustlings-zh-cn/issues)"""
+hint = """只需将绑定到 `word` 的值从 `String` 改为字符串切片(string slice)，就能轻松修复这个问题。
+不过有一种方法: 在 `if` 语句中添加一个字符，即可将 String 强制转换为字符串切片。
+
+小提示: 如果你对这类引用转换的原理感兴趣，可以参考The Rust Book智能指针章节的以下部分(含解引用强制多态机制详解):
+https://doc.rust-lang.org/book/ch15-02-deref.html#implicit-deref-coercions-with-functions-and-methods"""
 
 [[exercises]]
 name = "strings3"
