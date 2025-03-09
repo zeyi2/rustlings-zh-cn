@@ -282,8 +282,12 @@ https://doc.rust-lang.org/stable/book/ch04-02-references-and-borrowing.html """
 name = "move_semantics5"
 dir = "06_move_semantics"
 test = false
-hint = """此练习还暂无提示哦
-(需要点提示? 提出问题到 https://github.com/SandmeyerX/rustlings-zh-cn/issues)"""
+hint = """要找到答案，可参考The Rust Book中的“引用与借用(References and Borrowing)”章节:
+https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html
+
+第一个问题在于 `get_char` 获取了字符串的所有权。这导致 `data` 被移动(moved)，从而无法在 `string_uppercase` 中使用。因为 `data` 会先被移动到 `get_char` 中，意味着 `string_uppercase` 无法再操作该数据。
+
+修复此问题后，还需要调整一下 `string_uppercase` 的函数签名。"""
 
 [[exercises]]
 name = "structs1"
