@@ -175,21 +175,6 @@ hint = """此练习还暂无提示哦
 (需要点提示? 提出问题到 https://github.com/SandmeyerX/rustlings-zh-cn/issues)"""
 
 [[exercises]]
-name = "quiz2"
-dir = "quizzes"
-hint = """此练习还暂无提示哦
-(需要点提示? 提出问题到 https://github.com/SandmeyerX/rustlings-zh-cn/issues)"""
-
-[[exercises]]
-name = "quiz3"
-dir = "quizzes"
-hint = """要解决这个练习，特性（trait）知识，特别是特性边界语法知识是必不可少的。
-https://doc.rust-lang.org/stable/book/ch10-02-traits.html#using-trait-bounds-to-conditionally-implement-methods
-以下是在实现块中指定特性边界的方法:
-`impl<T: Trait1 + Trait2 + …> for Foo<T> { … }`
-可能需要`use std::fmt::Display;`。"""
-
-[[exercises]]
 name = "primitive_types1"
 dir = "04_primitive_types"
 test = false
@@ -201,8 +186,11 @@ hint = """将运算符`!`置于布尔值之前，可以去否布尔值。
 name = "primitive_types2"
 dir = "04_primitive_types"
 test = false
-hint = """此练习还暂无提示哦
-(需要点提示? 提出问题到 https://github.com/SandmeyerX/rustlings-zh-cn/issues)"""
+hint = """在 Rust 中，字符类型 `char` 需注意以下要点:  
+1. 单引号定义: 用单引号包裹单个字符，如 `'A'` 或 `'😻'`，与双引号的字符串(`"abc"`)严格区分；  
+2. Unicode 支持: 每个 `char` 是 4 字节的 Unicode 标量值，可表示中文、表情符号等任意 Unicode 字符；  
+3. 类型转换: 仅 `u8` 可通过 `as` 直接转 `char`，其他整型需用 `std::char::from_u32` 等方法检查有效性；  
+4. 与字符串区别: 字符串(`String`/`&str`)存储 UTF-8 编码的字节序列，而 `char` 直接存储 Unicode 码位。"""
 
 [[exercises]]
 name = "primitive_types3"
@@ -218,21 +206,18 @@ hint = """在Rust中，有一种以特定大小初始化数组的便捷方法:
 [[exercises]]
 name = "primitive_types4"
 dir = "04_primitive_types"
-hint = """此练习还暂无提示哦
-(需要点提示? 提出问题到 https://github.com/SandmeyerX/rustlings-zh-cn/issues)"""
+hint = """要让 `nice_slice` 满足测试，可使用数组切片语法，从数组 `a` 中提取从索引 1 开始到索引 4(不包含)的元素，语法格式为 `&数组名[起始索引..结束索引]`。"""
 
 [[exercises]]
 name = "primitive_types5"
 dir = "04_primitive_types"
 test = false
-hint = """此练习还暂无提示哦
-(需要点提示? 提出问题到 https://github.com/SandmeyerX/rustlings-zh-cn/issues)"""
+hint = """使用元组解构语法，通过 `let` 语句将元组 `cat` 的元素分别绑定到变量 `name` 和 `age` 上，格式为 `let (变量名1, 变量名2) = 元组名;`。"""
 
 [[exercises]]
 name = "primitive_types6"
 dir = "04_primitive_types"
-hint = """此练习还暂无提示哦
-(需要点提示? 提出问题到 https://github.com/SandmeyerX/rustlings-zh-cn/issues)"""
+hint = """元组元素索引从 0 开始，用 `.索引` 访问，把 `numbers` 的第二个元素(索引为 1)赋值给 `second`，即 `let second = numbers.索引;`。"""
 
 [[exercises]]
 name = "vecs1"
@@ -282,8 +267,12 @@ https://doc.rust-lang.org/stable/book/ch04-02-references-and-borrowing.html """
 name = "move_semantics5"
 dir = "06_move_semantics"
 test = false
-hint = """此练习还暂无提示哦
-(需要点提示? 提出问题到 https://github.com/SandmeyerX/rustlings-zh-cn/issues)"""
+hint = """要找到答案，可参考The Rust Book中的“引用与借用(References and Borrowing)”章节:
+https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html
+
+第一个问题在于 `get_char` 获取了字符串的所有权。这导致 `data` 被移动(moved)，从而无法在 `string_uppercase` 中使用。因为 `data` 会先被移动到 `get_char` 中，意味着 `string_uppercase` 无法再操作该数据。
+
+修复此问题后，还需要调整一下 `string_uppercase` 的函数签名。"""
 
 [[exercises]]
 name = "structs1"
@@ -314,15 +303,20 @@ https://doc.rust-lang.org/stable/book/ch05-03-method-syntax.html 。"""
 name = "enums1"
 dir = "08_enums"
 test = false
-hint = """此练习还暂无提示哦
-(需要点提示? 提出问题到 https://github.com/SandmeyerX/rustlings-zh-cn/issues)"""
+hint = """为`Message`枚举创建下面所有使用到的变体"""
 
 [[exercises]]
 name = "enums2"
 dir = "08_enums"
 test = false
-hint = """此练习还暂无提示哦
-(需要点提示? 提出问题到 https://github.com/SandmeyerX/rustlings-zh-cn/issues)"""
+hint = """在 Rust 中，你可以创建包含不同类型变体的枚举，这些变体可以支持多种数据结构形式，例如:
+​匿名结构体: `Move { x: i32, y: i32 }`
+​具名结构体: 通过`struct Point`定义后绑定到`Move(Point)`变体
+​单字符串: `Echo(String)`
+​元组: `ChangeColor(u8, u8, u8)`
+​无数据变体: `Quit`
+...
+这种设计允许枚举灵活地封装不同场景下的数据形态，并通过模式匹配统一处理。"""
 
 [[exercises]]
 name = "enums3"
@@ -342,8 +336,11 @@ hint = """`current_favorite_color` 函数返回的是具有 `static`(静态)生�
 name = "strings2"
 dir = "09_strings"
 test = false
-hint = """此练习还暂无提示哦
-(需要点提示? 提出问题到 https://github.com/SandmeyerX/rustlings-zh-cn/issues)"""
+hint = """只需将绑定到 `word` 的值从 `String` 改为字符串切片(string slice)，就能轻松修复这个问题。
+不过有一种方法: 在 `if` 语句中添加一个字符，即可将 String 强制转换为字符串切片。
+
+小提示: 如果你对这类引用转换的原理感兴趣，可以参考The Rust Book智能指针章节的以下部分(含解引用强制多态机制详解):
+https://doc.rust-lang.org/book/ch15-02-deref.html#implicit-deref-coercions-with-functions-and-methods"""
 
 [[exercises]]
 name = "strings3"
@@ -405,6 +402,12 @@ https://doc.rust-lang.org/stable/book/ch08-03-hash-maps.html#adding-a-key-and-va
 确保当给定的键已经存在时，能够根据已设置的值进行更新。
 更多详细信息，请参考The Rust Book:
 https://doc.rust-lang.org/stable/book/ch08-03-hash-maps.html#updating-a-value-based-on-the-old-value"""
+
+[[exercises]]
+name = "quiz2"
+dir = "quizzes"
+hint = """此练习还暂无提示哦
+(需要点提示? 提出问题到 https://github.com/SandmeyerX/rustlings-zh-cn/issues)"""
 
 [[exercises]]
 name = "options1"
@@ -520,6 +523,15 @@ dir = "15_traits"
 hint = """要约束参数实现了多个特征，可以使用 `+` 语法。请尝试将 `???` 替换为 `impl [这里填入第一个特征名称] + [这里填入第二个特征名称]`。
 The Rust Book的相应章节:
 https://doc.rust-lang.org/stable/book/ch10-02-traits.html#specifying-multiple-trait-bounds-with-the--syntax"""
+
+[[exercises]]
+name = "quiz3"
+dir = "quizzes"
+hint = """要解决这个练习，特性（trait）知识，特别是特性边界语法知识是必不可少的。
+https://doc.rust-lang.org/stable/book/ch10-02-traits.html#using-trait-bounds-to-conditionally-implement-methods
+以下是在实现块中指定特性边界的方法:
+`impl<T: Trait1 + Trait2 + …> for Foo<T> { … }`
+可能需要`use std::fmt::Display;`。"""
 
 [[exercises]]
 name = "lifetimes1"
